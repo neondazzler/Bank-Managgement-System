@@ -4,6 +4,7 @@ package bank.management.system;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.ResultSet;
 import java.util.*;
 public class Withdraw extends JFrame implements ActionListener {
     
@@ -82,6 +83,21 @@ public class Withdraw extends JFrame implements ActionListener {
             else{
                 try{
                     Cons conn = new Cons();
+                    ResultSet rs = conn.s.executeQuery("select * from bank where pin = '"+pinNumber+"'" );
+                    int left = 0;
+                    while(rs.next()){
+                        if(rs.getString("type").equals("Deposit")){
+                            left += Integer.parseInt(rs.getString("amount"));
+                        }else{
+                            left -= Integer.parseInt(rs.getString("amount"));
+                        }
+                    }
+                    if(ae.getSource()!= back && left < Integer.parseInt(number)){
+                    JOptionPane.showMessageDialog(null,"Insufficient Balance");
+                    setVisible(false);
+                    new Home(pinNumber).setVisible(true);
+                    return;
+                    }
                     String query = "insert into bank values('"+pinNumber+"','"+date+"','Withdrawl','"+number+"')";
                     conn.s.executeUpdate(query);
                     JOptionPane.showMessageDialog(null, "Rs " + number + " Withdraw Successfully");

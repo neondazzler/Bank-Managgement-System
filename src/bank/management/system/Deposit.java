@@ -87,10 +87,10 @@ public class Deposit extends JFrame implements ActionListener {
             // Check of Amount Field Ends Here
             
             
-            if(number.equals("") || deposit_match == false ){
+            if(number.equals("") || deposit_match == false || number.equals("0") ){
                 JOptionPane.showMessageDialog(null,"Invalid Amount");
                 setVisible(false);
-                    new Home(pinNumber).setVisible(true);
+                    new Deposit(pinNumber).setVisible(true);
             }
             else{
                 try{

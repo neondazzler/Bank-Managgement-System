@@ -13,8 +13,8 @@ import com.toedter.calendar.JDateChooser;
 public class Signup extends JFrame implements ActionListener {
     
     long random;
-    JTextField nameText,fnameText,dobText,emailText,addressText,cityText,stateText,pinText;
-    JButton next, cancel;
+    JTextField nameText,fnameText,dobText,emailText,addressText,cityText,stateText,pinText,dobtext;
+    JButton next, cancel,dobButton;
     JRadioButton male, female, other , married, unmarried;
     JDateChooser dateChooser;
     Signup(){
@@ -74,10 +74,22 @@ public class Signup extends JFrame implements ActionListener {
         dobText.setBounds(120,250,200,30);
         add(dobText);
         dateChooser = new JDateChooser();
-        dateChooser.setBounds(300,250,400,30);
+        dateChooser.setBounds(300,250,20,30);
         dateChooser.setForeground(new Color(105,105,105));
         add(dateChooser);
+        dobtext=new JTextField();
+        dobtext.setFont(new Font("Railway",Font.BOLD,14));
+        dobtext.setBounds(320,250,150,30);
+        add(dobtext);
         
+        
+        dobButton = new JButton("Show DOB");
+        dobButton.setBackground(Color.BLACK);
+        dobButton.setForeground(Color.WHITE);
+        dobButton.setFont(new Font("Railway",Font.BOLD,12));
+        dobButton.setBounds(470, 250, 100, 30);
+        dobButton.addActionListener(this);
+        add(dobButton);
         
         
         
@@ -223,9 +235,16 @@ public class Signup extends JFrame implements ActionListener {
     }
     
     public void actionPerformed(ActionEvent ae){
+        
+        
         if(ae.getSource() == cancel){
             setVisible(false);
             new Login().setVisible(true);
+            return;
+        }
+        if(ae.getSource()== dobButton){
+            String dob = ((JTextField) dateChooser.getDateEditor().getUiComponent()).getText();
+            dobtext.setText(dob);
             return;
         }
         
@@ -240,7 +259,6 @@ public class Signup extends JFrame implements ActionListener {
         else if(female.isSelected()){
             gender = "Female";
         }
-        
         
         
         
@@ -259,6 +277,7 @@ public class Signup extends JFrame implements ActionListener {
         String city = cityText.getText();
         String state = stateText.getText();
         String pin = pinText.getText();
+        
         
         
         

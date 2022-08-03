@@ -151,6 +151,7 @@ public class Home extends JFrame implements ActionListener {
             new MiniStatement(pinNumber).setVisible(true);   
         } 
         else if(ae.getSource() == pinChange){
+            setVisible(false);
             new PinChange(pinNumber).setVisible(true);   
         } 
     }

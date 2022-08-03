@@ -5,6 +5,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 public class Deposit extends JFrame implements ActionListener {
     
     JTextField amount;
@@ -76,8 +78,19 @@ public class Deposit extends JFrame implements ActionListener {
             setVisible(false);
             String number = amount.getText();
             Date date = new Date();
-            if(number.equals("")){
-                JOptionPane.showMessageDialog(null,"Enter amount you want to deposit");
+            //To Check the Format of Amount Entered
+            
+            String regex_deposit = "[0-9]+";  // Regular Expression to check that the amount entered is numeric
+            Pattern pattern_deposit =Pattern.compile(regex_deposit);
+            Matcher match_deposit= pattern_deposit.matcher(number); // Mathching the Entered amount with the regex
+            boolean deposit_match= match_deposit.matches(); // Transfering the result to a boolean variable
+            // Check of Amount Field Ends Here
+            
+            
+            if(number.equals("") || deposit_match == false ){
+                JOptionPane.showMessageDialog(null,"Invalid Amount");
+                setVisible(false);
+                    new Home(pinNumber).setVisible(true);
             }
             else{
                 try{

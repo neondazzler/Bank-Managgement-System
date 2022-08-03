@@ -2,6 +2,8 @@ package bank.management.system;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class PinChange extends JFrame implements ActionListener{
  
@@ -84,17 +86,33 @@ public class PinChange extends JFrame implements ActionListener{
         try{
             String npin=pin.getText();
             String rpin=repin.getText();
+             String regex_deposit = "[0-9]+";  // Regular Expression to check that the amount entered is numeric
+            Pattern pattern_deposit =Pattern.compile(regex_deposit);
+            Matcher match_deposit= pattern_deposit.matcher(npin); // Mathching the Entered amount with the regex
+            boolean deposit_match= match_deposit.matches(); // Transfering the result to a boolean variable
+            // Check of Amount Field Ends Here
+            
+            
+            if(npin.equals("") || deposit_match == false || npin.length()!=4){
+                JOptionPane.showMessageDialog(null,"Invalid Pin. Enter a 4 digit Pin");
+                setVisible(false);
+                    new Home(pinNumber).setVisible(true);
+                    return;
+            }
+            
+            
             if(npin.equals(rpin)== false){
                 JOptionPane.showMessageDialog(null, "Pin Doesnot Match");
-                return;
+                setVisible(false);
+                    new Home(pinNumber).setVisible(true);
+                    return;
             }
-            if(npin.equals("")){
-                JOptionPane.showMessageDialog(null, "Enter New Pin");
-                return;
-            }
+            
             if(rpin.equals("")){
                 JOptionPane.showMessageDialog(null, "Please Confirm the New Pin");
-                return;
+                setVisible(false);
+                    new Home(pinNumber).setVisible(true);
+                    return;
             }
             Cons cons= new Cons();
             String query1="update bank set pin= '"+rpin+"' where pin='"+pinNumber+"'";

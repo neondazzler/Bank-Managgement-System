@@ -4,6 +4,7 @@ package bank.management.system;
 import javax.swing.*;
 import java.awt.*;
 import java.util.*;
+import java.util.regex.*;
 import java.awt.event.*;
 import com.toedter.calendar.JDateChooser;
 
@@ -227,7 +228,9 @@ public class Signup extends JFrame implements ActionListener {
             gender = "Female";
         }
         
-        String email = emailText.getText();
+        
+        
+        
         String marital = null;
         if(married.isSelected()){
             marital = "Mrried";
@@ -249,8 +252,26 @@ public class Signup extends JFrame implements ActionListener {
         try{
             
             //checking inputs: here
-            if(name.equals("")){
-                JOptionPane.showMessageDialog(null,"Name is Required");
+            //To Check the Format of Name Field
+            
+            String regex_name = "[a-zA-Z]+";  // Regular Expression to check the format of the email
+            Pattern pattern_name =Pattern.compile(regex_name);
+            Matcher match_name= pattern_name.matcher(name); // Mathching the Entered email with the regex
+            boolean name_match= match_name.matches(); // Transfering the result to a boolean variable
+            // Check of Email Field Ends Here
+            
+            
+            //To Check the Format of Email Field
+            String email = emailText.getText();
+            String regex_email = "^(.+)@(.+)$";  // Regular Expression to check the format of the email
+            Pattern pattern_email =Pattern.compile(regex_email);
+            Matcher match_email= pattern_email.matcher(email); // Mathching the Entered email with the regex
+            boolean email_match= match_email.matches(); // Transfering the result to a boolean variable
+            // Check of Email Field Ends Here
+            
+            
+            if(name_match == false){
+                JOptionPane.showMessageDialog(null,"Invalid Name");
             }
             else if(fname.equals("")){
                 JOptionPane.showMessageDialog(null,"Father's Name is Required");
@@ -261,8 +282,8 @@ public class Signup extends JFrame implements ActionListener {
             else if(gender.equals("")){
                 JOptionPane.showMessageDialog(null,"Select Gender");
             }
-            else if(email.equals("")){
-                JOptionPane.showMessageDialog(null,"Email is required");
+            else if(email_match == false){
+                JOptionPane.showMessageDialog(null,"Incorrect Email Format");
             }
             else if(marital.equals("")){
                 JOptionPane.showMessageDialog(null,"Select a Marital Status");

@@ -102,13 +102,19 @@ public class Login extends JFrame implements ActionListener{
         
         //add exit button
         exit = new JButton("Exit");
-        exit.setBounds(480,490,150,40);
+        exit.setBounds(480,470,150,40);
         exit.setBackground(Color.BLACK);
         exit.setForeground(Color.WHITE);
         exit.addActionListener(this);
         add(exit);
         
         
+        
+        //name labels
+        JLabel amar = new JLabel("By - Amar Pratap Singh & Anuj Pratap Singh");
+        amar.setFont(new Font("Osward",Font.BOLD, 16));
+        amar.setBounds(80,520,550,20);
+        add(amar);
         
         
         

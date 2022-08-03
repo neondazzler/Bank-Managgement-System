@@ -14,7 +14,7 @@ public class Signup extends JFrame implements ActionListener {
     
     long random;
     JTextField nameText,fnameText,dobText,emailText,addressText,cityText,stateText,pinText;
-    JButton next;
+    JButton next, cancel;
     JRadioButton male, female, other , married, unmarried;
     JDateChooser dateChooser;
     Signup(){
@@ -207,6 +207,13 @@ public class Signup extends JFrame implements ActionListener {
         next.addActionListener(this);
         add(next);
         
+        cancel = new JButton("Cancel");
+        cancel.setBackground(Color.BLACK);
+        cancel.setForeground(Color.WHITE);
+        cancel.setFont(new Font("Railway",Font.BOLD,14));
+        cancel.setBounds(470, 690, 100, 30);
+        cancel.addActionListener(this);
+        add(cancel);
         
         getContentPane().setBackground(Color.GRAY);
         
@@ -216,6 +223,12 @@ public class Signup extends JFrame implements ActionListener {
     }
     
     public void actionPerformed(ActionEvent ae){
+        if(ae.getSource() == cancel){
+            setVisible(false);
+            new Login().setVisible(true);
+            return;
+        }
+        
         String formno = ""+ random; // random is a long value
         String name  = nameText.getText();
         String fname = fnameText.getText();
@@ -253,13 +266,42 @@ public class Signup extends JFrame implements ActionListener {
             
             //checking inputs: here
             //To Check the Format of Name Field
-            
-            String regex_name = "[a-zA-Z]+";  // Regular Expression to check the format of the email
+            String regex_name = "^[\\p{L} .'-]+$";  // Regular Expression to check the format of the Name
             Pattern pattern_name =Pattern.compile(regex_name);
-            Matcher match_name= pattern_name.matcher(name); // Mathching the Entered email with the regex
+            Matcher match_name= pattern_name.matcher(name); // Mathching the Entered name with the regex
             boolean name_match= match_name.matches(); // Transfering the result to a boolean variable
-            // Check of Email Field Ends Here
+            // Check of name Field Ends Here
             
+            //To Check the Format of Father's Name Field
+            String regex_fname = "^[\\p{L} .'-]+$";  // Regular Expression to check the format of the f name
+            Pattern pattern_fname =Pattern.compile(regex_fname);
+            Matcher match_fname= pattern_fname.matcher(fname); // Mathching the Entered fname with the regex
+            boolean fname_match= match_fname.matches(); // Transfering the result to a boolean variable
+            // Check of fname Field Ends Here
+            //"^[\\p{L} .'-]+$";
+            
+            //To Check the Format of state Field
+            String regex_state = "^[\\p{L} .'-]+$";  // Regular Expression to check the format of the state
+            Pattern pattern_state =Pattern.compile(regex_state);
+            Matcher match_state= pattern_state.matcher(state); // Mathching the Entered state with the regex
+            boolean state_match= match_state.matches(); // Transfering the result to a boolean variable
+            // Check of state Field Ends Here
+            
+            
+            //To Check the Format of city Field
+            String regex_city = "^[\\p{L} .'-]+$";  // Regular Expression to check the format of the city
+            Pattern pattern_city =Pattern.compile(regex_city);
+            Matcher match_city= pattern_city.matcher(city); // Mathching the Entered city with the regex
+            boolean city_match= match_city.matches(); // Transfering the result to a boolean variable
+            // Check of city Field Ends Here
+            
+            
+             //To Check the Format of Pin Code Field
+            String regex_pin = "[0-9]{6}+";  // Regular Expression to check the format of the pin code i.e, 6 digits only
+            Pattern pattern_pin =Pattern.compile(regex_pin);
+            Matcher match_pin= pattern_pin.matcher(pin); // Mathching the Entered pincode with the regex
+            boolean pin_match= match_pin.matches(); // Transfering the result to a boolean variable
+            // Check of pincode Field Ends Here
             
             //To Check the Format of Email Field
             String email = emailText.getText();
@@ -273,31 +315,31 @@ public class Signup extends JFrame implements ActionListener {
             if(name_match == false){
                 JOptionPane.showMessageDialog(null,"Invalid Name");
             }
-            else if(fname.equals("")){
-                JOptionPane.showMessageDialog(null,"Father's Name is Required");
+            else if(fname_match == false){
+                JOptionPane.showMessageDialog(null,"Invalid Father's Name");
             }
             else if(dob.equals("")){
                 JOptionPane.showMessageDialog(null,"Enter DOB");
             }
-            else if(gender.equals("")){
+            else if(gender == null){
                 JOptionPane.showMessageDialog(null,"Select Gender");
             }
             else if(email_match == false){
                 JOptionPane.showMessageDialog(null,"Incorrect Email Format");
             }
-            else if(marital.equals("")){
+            else if(marital == null){
                 JOptionPane.showMessageDialog(null,"Select a Marital Status");
             }
             else if(address.equals("")){
                 JOptionPane.showMessageDialog(null,"Address is Required");
             }
-            else if(city.equals("")){
-                JOptionPane.showMessageDialog(null,"City is Required");
+            else if(city_match == false){
+                JOptionPane.showMessageDialog(null,"Invalid City");
             }
-            else if(state.equals("")){
-                JOptionPane.showMessageDialog(null,"State is Required");
-            }else if(pin.equals("")){
-                JOptionPane.showMessageDialog(null,"Pin is Required");
+            else if(state_match == false){
+                JOptionPane.showMessageDialog(null,"Invalid State");
+            }else if( pin_match == false){
+                JOptionPane.showMessageDialog(null,"Invalid Pincode");
             }
             
             else{

@@ -4,6 +4,8 @@ package bank.management.system;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 public class SignupTwo extends JFrame implements ActionListener {
         JTextField aadharText,panText;
         JComboBox incomeval,categoryval,eduValue,occupationValue;
@@ -188,14 +190,40 @@ public class SignupTwo extends JFrame implements ActionListener {
         
             try{
             
+                
+                
+                
+                
+                
                 //checking inputs: here
-                if(senior.equals("")){
+                
+                
+                
+                //To Check the Format of aadhar Field
+            String regex_aadhar = "[0-9]{12}+";  // Regular Expression to check the format of the aadhar i.e, 12 numeric digits only
+            Pattern pattern_aadhar =Pattern.compile(regex_aadhar);
+            Matcher match_aadhar= pattern_aadhar.matcher(aadhar); // Mathching the Entered pincode with the regex
+            boolean aadhar_match= match_aadhar.matches(); // Transfering the result to a boolean variable
+            // Check of aadhar Field Ends Here
+                
+            //To Check the Format of PAN Field
+            String regex_pan = "[A-Z]{5}[0-9]{4}[A-Z]{1}+";  // Regular Expression to check the format of the PAN i.e, 5 Alphabets followed by 4 digits followed by 1 Alphabet(All in UpperCase)
+            Pattern pattern_pan =Pattern.compile(regex_pan);
+            Matcher match_pan= pattern_pan.matcher(pan); // Mathching the Entered pincode with the regex
+            boolean pan_match= match_pan.matches(); // Transfering the result to a boolean variable
+            // Check of PAN Field Ends Here
+                
+                if(income == "Null"){
+                     JOptionPane.showMessageDialog(null,"Select Annual Income");
+                }
+            
+                else if(senior == null){
                     JOptionPane.showMessageDialog(null,"Select Senior Citizen Option");
                 }
-                else if(aadhar.equals("")){
+                else if(aadhar_match == false){
                     JOptionPane.showMessageDialog(null,"Aadhar is Required");
                 }
-                else if(pan.equals("")){
+                else if(pan_match  == false){
                     JOptionPane.showMessageDialog(null,"PAN is Required");
                 }
             

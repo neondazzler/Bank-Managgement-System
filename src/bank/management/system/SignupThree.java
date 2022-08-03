@@ -4,9 +4,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
+import java.awt.datatransfer.StringSelection;
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+
 
 public class SignupThree extends JFrame implements ActionListener{
-    JButton finish;
+    JButton finish, copy;
     String accountNumber,pinNumber;
     String formno;
     SignupThree(String formno){
@@ -43,7 +47,13 @@ public class SignupThree extends JFrame implements ActionListener{
         add(pin);
         
         
-        
+        copy = new JButton("Copy");
+        copy.setBackground(Color.BLACK);
+        copy.setForeground(Color.WHITE);
+        copy.setFont(new Font("Railway",Font.BOLD,14));
+        copy.setBounds(470, 195, 100, 30);
+        copy.addActionListener(this);
+        add(copy);
         
         
         
@@ -56,6 +66,17 @@ public class SignupThree extends JFrame implements ActionListener{
         add(finish);
     }
     public void actionPerformed(ActionEvent ae){
+        
+        if(ae.getSource()== copy){
+            
+            String acNo= accountNumber;
+            StringSelection strselect= new StringSelection(acNo);
+            Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+            clipboard.setContents(strselect, null);
+            
+            JOptionPane.showMessageDialog(null, "Account Number Copied to Clipboard");
+        }
+        
         if(ae.getSource()==finish){
             String accNo = accountNumber;
             String pinNo = pinNumber;

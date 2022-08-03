@@ -284,6 +284,9 @@ public class Signup extends JFrame implements ActionListener {
         try{
             
             //checking inputs: here
+            //"^[\\p{L} .'-]+$"    -- Regular Expression to check Name in any Language
+            //"[0-9]{6}+"  -- Regular Expression to check a 6 digit Numeric Value
+            
             //To Check the Format of Name Field
             String regex_name = "^[\\p{L} .'-]+$";  // Regular Expression to check the format of the Name
             Pattern pattern_name =Pattern.compile(regex_name);
@@ -297,7 +300,7 @@ public class Signup extends JFrame implements ActionListener {
             Matcher match_fname= pattern_fname.matcher(fname); // Mathching the Entered fname with the regex
             boolean fname_match= match_fname.matches(); // Transfering the result to a boolean variable
             // Check of fname Field Ends Here
-            //"^[\\p{L} .'-]+$";
+            
             
             //To Check the Format of state Field
             String regex_state = "^[\\p{L} .'-]+$";  // Regular Expression to check the format of the state

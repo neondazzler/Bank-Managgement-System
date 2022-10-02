@@ -19,7 +19,7 @@ public class Login extends JFrame implements ActionListener{
         
         
         //Title
-        setTitle("Chintu Bank ...."); //set titke of the frame
+        setTitle("Your Bank"); //set titke of the frame
         
         
         
@@ -141,7 +141,7 @@ public class Login extends JFrame implements ActionListener{
         
     }
     
-    public void actionPerformed(ActionEvent ae){
+    public void actionPerformed(ActionEvent ae){  // To get input from user and take action according to it 
             
             if(ae.getSource() == clear){
                 accnoTextField.setText("");

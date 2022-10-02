@@ -10,7 +10,7 @@ public class MiniStatement extends JFrame{
     MiniStatement(String pinNumber){
         this.pinNumber=pinNumber;
         
-        setLayout(null);
+        setLayout(null); // To reset the default layout to null, inorder to avoid any layout clashes
         
         
         

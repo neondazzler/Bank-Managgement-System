@@ -11,7 +11,7 @@ public class FastCash extends JFrame implements ActionListener {
     JButton deposit,cashDraw,fastCash,miniStatement,pinChange,balance,exit;
     String pinNumber;
     
-    
+    //adding comments
     
     FastCash(String pinNumber){
         this.pinNumber = pinNumber;
@@ -159,7 +159,7 @@ public class FastCash extends JFrame implements ActionListener {
                 
             
             catch(HeadlessException | NumberFormatException | SQLException e){
-                System.out.println(e);
+                System.out.println("Error occured: "+e);
             }
         }
         

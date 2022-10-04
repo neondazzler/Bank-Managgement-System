@@ -13,7 +13,7 @@ public class MiniStatement extends JFrame{
         setLayout(null); // To reset the default layout to null, inorder to avoid any layout clashes
         
         
-        
+        //new label for predefined amounts
         
         JLabel mini=new JLabel();
         mini.setBounds(20, 130, 500, 400);
@@ -34,6 +34,8 @@ public class MiniStatement extends JFrame{
         JLabel card= new JLabel();
         card.setBounds(20,80, 300, 20);
         add(card);
+        
+        //establishing connection to database 
         
         try{
             Cons cons=new Cons();
@@ -70,7 +72,8 @@ public class MiniStatement extends JFrame{
             
         }
         catch(Exception e){
-            System.out.println(e);
+            System.out.println("Error caught - "+e);
+            //this will print into the console
         }
         
         setTitle("Mini Statement");

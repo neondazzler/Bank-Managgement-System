@@ -41,7 +41,7 @@ public class Signup extends JFrame implements ActionListener {
         
         
         //Labels and textfields
-        
+        //commenting here
         
         
         JLabel name = new JLabel("Name :" );
@@ -381,7 +381,7 @@ public class Signup extends JFrame implements ActionListener {
             */
         }
         catch(Exception e){
-            System.out.println(e);
+            System.out.println("Error caught - " + e);
         }
         
         
@@ -391,7 +391,8 @@ public class Signup extends JFrame implements ActionListener {
     
     public static void main(String args[]){
         new Signup();
-    
+        //will create a new signup page
+        //after submitting the current details
     
     }
     

@@ -19,7 +19,7 @@ public class Signup extends JFrame implements ActionListener {
     JDateChooser dateChooser;
     Signup(){
         
-        
+        //set layout is boxed by defauylt so changing it is necessary
         
         setLayout(null);
         
@@ -381,9 +381,9 @@ public class Signup extends JFrame implements ActionListener {
             */
         }
         catch(Exception e){
-            System.out.println(e);
+            System.out.println("Error caught - "+e);
         }
-        
+        //this will print the error encountered in the console
         
     }
     
@@ -391,7 +391,7 @@ public class Signup extends JFrame implements ActionListener {
     
     public static void main(String args[]){
         new Signup();
-    
+        //This will create a new page and logout the current user
     
     }
     

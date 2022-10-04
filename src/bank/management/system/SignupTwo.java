@@ -17,8 +17,8 @@ public class SignupTwo extends JFrame implements ActionListener {
         this.formno = formno;
         setLayout(null);
         
-        setTitle("Sign Up,    Page 2 of 2");
-        
+        setTitle("Sign Up Page 2 of 2");
+        //title of the page
         
         
         
@@ -189,15 +189,7 @@ public class SignupTwo extends JFrame implements ActionListener {
         
         
             try{
-            
-                
-                
-                
-                
-                
-                //checking inputs: here
-                
-                
+                //checking inputs: here for abnormal values
                 
                 //To Check the Format of aadhar Field
             String regex_aadhar = "[0-9]{12}+";  // Regular Expression to check the format of the aadhar i.e, 12 numeric digits only
@@ -243,7 +235,8 @@ public class SignupTwo extends JFrame implements ActionListener {
             "string'"+variable"'String";
             */
              catch(Exception e){
-                System.out.println(e);
+                System.out.println("Error caught - "+e);
+                     //this will make user interaction better
             }
         }
             
@@ -255,7 +248,7 @@ public class SignupTwo extends JFrame implements ActionListener {
     
     public static void main(String args[]){
         new SignupTwo("");
-    
+        //this will create a new signup page and logout the current user
     
     }
     
